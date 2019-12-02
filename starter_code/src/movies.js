@@ -1,13 +1,20 @@
 /* eslint no-restricted-globals: 'off' */
+/* extra
+function isEmpty(array) {
+  return array.length === 0;
+}*/
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
 function orderByYear(movies) {
+  // if(isEmpty(movies)) return [];
   var sortedMovies = Object.assign([], movies);
   var sortedMovies = sortedMovies.sort(function(a, b) {
     if (a.year - b.year != 0) {
       return a.year - b.year;
     } else {
+      /* aquí puede usarse
+      return movie1.title.localeCompare(movie2.title);*/
       if (a.title > b.title) {
         return 1;
       }
@@ -30,11 +37,11 @@ function howManyMovies(movies) {
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
-  var orderedMovies = Object.assign([], movies);
+  var orderedMovies = Object.assign([], movies); //la copia se puede hacer directamente con un map
   orderedMovies = orderedMovies.map(function(e) {
     return e.title;
   });
-  orderedMovies.sort(function(a, b) {
+  orderedMovies.sort(function(a, b) { // sort por defecto ya ordena alfabéticamente
     if (a > b) {
       return 1;
     }
@@ -65,7 +72,7 @@ function ratesAverage(movies) {
   var ratesAvg = rates.reduce(function(a, c) {
     return a + c / rates.length;
   }, 0);
-  ratesAvg = parseFloat(ratesAvg.toFixed(2));
+  ratesAvg = parseFloat(ratesAvg.toFixed(2));  // se puede parsear con +(ratesAvg.toFixed(2))
   console.log(ratesAvg);
   return ratesAvg;
 }
@@ -83,6 +90,13 @@ function dramaMoviesRate(movies) {
 function turnHoursToMinutes(movies) {
   var moviesSec = Object.assign([], JSON.parse(JSON.stringify(movies)));
   moviesSec.forEach(function(e) {
+    /*
+    aquí era más fácil usar un  if  (moviesSec.duration.includes("h") && moviesSec.duration.includes("min"))
+    else if (moviesSec.duration.includes("h"))
+    else
+    y para sacar el valor de las horas y los minutos usar un split con el separador h o min! VER CORRECCIÓN
+    */
+
     // get hours and minutes from duration value string
     let hours = e.duration.match(/\d+h/);
     if (hours != null){
@@ -103,8 +117,15 @@ function turnHoursToMinutes(movies) {
     //save in duration
     e.duration = result;
   });
-  return moviesSec;
+  return moviesSec;  // se puede hacer una copia del objeto movies reasignando con Object.assign({},movies,{duration:newDuration})
 }
 
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+/*TODO!!*/
+function bestYearAv(movies) {
+
+
+  return ;
+}
+
